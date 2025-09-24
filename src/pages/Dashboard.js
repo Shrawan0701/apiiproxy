@@ -8,6 +8,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [keyLoading, setKeyLoading] = useState(false);
+  const [copied, setCopied] = useState(false); // ✅ Added for toast
 
   const { apiKey, updateApiKey, userEmail } = useAuth();
 
@@ -29,7 +30,6 @@ const Dashboard = () => {
     }
   };
 
-
   const generateNewKey = async () => {
     try {
       setKeyLoading(true);
@@ -43,9 +43,12 @@ const Dashboard = () => {
     }
   };
 
+  // ✅ Updated copy logic with toast
   const copyApiKey = () => {
-    navigator.clipboard.writeText(apiKey);
-    alert('API key copied to clipboard!');
+    navigator.clipboard.writeText(apiKey).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Hide toast after 2 sec
+    });
   };
 
   if (loading) {
@@ -85,8 +88,8 @@ const Dashboard = () => {
           <div className="api-key-display">
             <code>{apiKey}</code>
             <button onClick={copyApiKey} className="btn btn-small">Copy</button>
-            <button 
-              onClick={generateNewKey} 
+            <button
+              onClick={generateNewKey}
               className="btn btn-outline btn-small"
               disabled={keyLoading}
             >
@@ -106,7 +109,7 @@ const Dashboard = () => {
             {stats.todayRequests} / {stats.quotaLimit}
           </div>
           <div className="stat-progress">
-            <div 
+            <div
               className="stat-progress-bar"
               style={{ width: `${(stats.todayRequests / stats.quotaLimit) * 100}%` }}
             ></div>
@@ -152,10 +155,10 @@ const Dashboard = () => {
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />
-                <Line 
-                  type="monotone" 
-                  dataKey="avgLatency" 
-                  stroke="#10b981" 
+                <Line
+                  type="monotone"
+                  dataKey="avgLatency"
+                  stroke="#10b981"
                   strokeWidth={2}
                 />
               </LineChart>
@@ -169,6 +172,13 @@ const Dashboard = () => {
           Refresh Data
         </button>
       </div>
+
+      {/* ✅ Toast Notification */}
+      {copied && (
+        <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300">
+          ✅ API key copied!
+        </div>
+      )}
     </div>
   );
 };
