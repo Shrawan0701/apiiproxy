@@ -17,11 +17,11 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         {!isAuthenticated && (
           <Link to="/" className="text-xl font-bold text-blue-600">
-            API <span className="text-gray-800">Limiter</span>
+           Rate<span className="text-gray-800">Mate</span>
           </Link>
         )}
 
-        {/* Mobile hamburger button */}
+
         <button
           className="md:hidden text-gray-700"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -29,7 +29,7 @@ const Navbar = () => {
           ☰
         </button>
 
-        {/* Links */}
+
         <div
           className={`flex-col md:flex md:flex-row md:gap-6 absolute md:static top-16 left-0 w-full md:w-auto bg-white shadow-md md:shadow-none p-4 md:p-0 transition-all ${
             menuOpen ? "flex" : "hidden"

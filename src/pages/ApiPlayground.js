@@ -264,7 +264,7 @@ const ApiPlayground = () => {
           <div className="code-example">
             <h4>Using your API key directly:</h4>
             <pre>
-{`curl -X POST http://localhost:8080/api/proxy \
+{`curl -X POST https://apiproxy-zeak.onrender.com/api/proxy \
   -H "X-API-Key: ${apiKey}" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://api.example.com", "method": "GET"}'`}

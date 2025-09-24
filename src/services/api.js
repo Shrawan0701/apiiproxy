@@ -9,13 +9,13 @@ const api = axios.create({
   },
 });
 
-// Add auth token to requests
+
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      // Always overwrite Authorization header with the latest token
+
       config.headers.Authorization = `Bearer ${token}`;
       console.log('[Auth Interceptor] Added Authorization header for:', config.url);
     } else {
@@ -29,7 +29,7 @@ api.interceptors.request.use(
 
 
 
-// Handle token expiration
+
 api.interceptors.response.use(
   (response) => response,
   (error) => {

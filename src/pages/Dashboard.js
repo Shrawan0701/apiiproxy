@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [keyLoading, setKeyLoading] = useState(false);
-  const [copied, setCopied] = useState(false); // ✅ Added for toast
+  const [copied, setCopied] = useState(false);
 
   const { apiKey, updateApiKey, userEmail } = useAuth();
 
@@ -20,7 +20,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const response = await statsService.getUserStats();
-      console.log('Dashboard stats response:', response); // Debug
+      console.log('Dashboard stats response:', response);
       setStats(response.data);
     } catch (err) {
       console.error('Failed to load statistics:', err.response?.data || err.message);
@@ -43,11 +43,11 @@ const Dashboard = () => {
     }
   };
 
-  // ✅ Updated copy logic with toast
+
   const copyApiKey = () => {
     navigator.clipboard.writeText(apiKey).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // Hide toast after 2 sec
+      setTimeout(() => setCopied(false), 2000);
     });
   };
 
@@ -173,10 +173,10 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {/* ✅ Toast Notification */}
+
       {copied && (
         <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300">
-          ✅ API key copied!
+           API key copied!
         </div>
       )}
     </div>
