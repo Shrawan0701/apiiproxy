@@ -779,4 +779,39 @@ body {
   .request-actions {
     flex-direction: column;
   }
+
+}
+/* Hide links on mobile by default */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.nav-links-open {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+  }
+}
+
+/* Desktop shows links normally */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none;
+  }
 }

@@ -13,28 +13,26 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md p-4">
-      <div className="max-w-6xl mx-auto flex justify-between items-center">
+    <nav className="navbar">
+      <div className="nav-container">
+        {/* Brand Name (only show when logged out) */}
         {!isAuthenticated && (
-          <Link to="/" className="text-xl font-bold text-blue-600">
-           Rate<span className="text-gray-800">Mate</span>
+          <Link to="/" className="nav-brand">
+            Rate<span style={{ color: "#111" }}>Mate</span>
           </Link>
         )}
 
-
+        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-gray-700"
+          className="mobile-menu-btn"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle Menu"
         >
           ☰
         </button>
 
-
-        <div
-          className={`flex-col md:flex md:flex-row md:gap-6 absolute md:static top-16 left-0 w-full md:w-auto bg-white shadow-md md:shadow-none p-4 md:p-0 transition-all ${
-            menuOpen ? "flex" : "hidden"
-          }`}
-        >
+        {/* Links */}
+        <div className={`nav-links ${menuOpen ? "nav-links-open" : ""}`}>
           {isAuthenticated ? (
             <>
               <Link to="/dashboard" className="nav-link">
@@ -43,14 +41,9 @@ const Navbar = () => {
               <Link to="/playground" className="nav-link">
                 Playground
               </Link>
-              <div className="flex items-center gap-2">
-                <span className="text-sm truncate max-w-[150px]">
-                  {userEmail}
-                </span>
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-500 text-white px-3 py-1 rounded-md"
-                >
+              <div className="nav-user">
+                <span className="user-email">{userEmail}</span>
+                <button onClick={handleLogout} className="logout-btn">
                   Logout
                 </button>
               </div>
@@ -61,9 +54,7 @@ const Navbar = () => {
                 Login
               </Link>
               <Link to="/register">
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-md">
-                  Sign Up
-                </button>
+                <button className="btn btn-primary">Sign Up</button>
               </Link>
             </>
           )}
