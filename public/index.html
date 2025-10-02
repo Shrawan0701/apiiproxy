@@ -15,49 +15,13 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-    <!-- Analytics Tracking Code -->
-<script>
-(function() {
-  const websiteId = 'd60bbe6e-f642-49b3-9404-2da3b7f44d35';
-  const apiUrl = 'https://websiteanalytics.vercel.app';
-  
-  // Track page view
-  function trackPageView() {
-    fetch(apiUrl + '/track', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        websiteId: websiteId,
-        eventType: 'page_view',
-        pageUrl: window.location.href,
-        referrer: document.referrer,
-        userAgent: navigator.userAgent
-      })
-    });
-  }
-  
-  // Track clicks
-  document.addEventListener('click', function(e) {
-    fetch(apiUrl + '/track', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        websiteId: websiteId,
-        eventType: 'click',
-        pageUrl: window.location.href,
-        referrer: document.referrer,
-        userAgent: navigator.userAgent,
-        metadata: {
-          element: e.target.tagName,
-          text: e.target.textContent?.substring(0, 50)
-        }
-      })
-    });
-  });
-  
-  // Track on load
-  trackPageView();
-})();
-</script>
+   <script>
+      (function() {
+        var s = document.createElement("script");
+        s.src = "https://websiteanalytics.onrender.com/api/tracking.js?website=8024948f-96b8-4aa2-a954-a484ca8a4e31";
+        s.async = true;
+        document.body.appendChild(s);
+      })();
+      </script>
   </body>
 </html>
