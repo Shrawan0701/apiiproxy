@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
 import { authService } from '../services/api';
@@ -13,6 +13,16 @@ const Login = () => {
 
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  // Auto-hide error after 5 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const handleChange = (e) => {
     setFormData({
@@ -75,8 +85,8 @@ const Login = () => {
               />
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary btn-full"
               disabled={loading}
             >
@@ -89,18 +99,6 @@ const Login = () => {
               Don't have an account?{' '}
               <Link to="/register" className="auth-link">Sign Up</Link>
             </p>
-          </div>
-
-          <div className="social-login">
-            <p>Or continue with</p>
-            <div className="social-buttons">
-              <button className="btn btn-social" disabled>
-                <span>🔗</span> Google (Coming Soon)
-              </button>
-              <button className="btn btn-social" disabled>
-                <span>📱</span> GitHub (Coming Soon)
-              </button>
-            </div>
           </div>
         </div>
       </div>

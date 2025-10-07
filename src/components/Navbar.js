@@ -1,11 +1,28 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../utils/AuthContext";
 
 const Navbar = () => {
   const { isAuthenticated, userEmail, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+
+
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
+  if (isAuthPage) {
+
+    return (
+      <nav className="navbar">
+        <div className="nav-container">
+          <Link to="/" className="nav-brand">
+            Rate<span style={{ color: "#111" }}>Mate</span>
+          </Link>
+        </div>
+      </nav>
+    );
+  }
 
   const handleLogout = () => {
     logout();
@@ -15,14 +32,14 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        {/* Brand Name (only show when logged out) */}
+
         {!isAuthenticated && (
           <Link to="/" className="nav-brand">
             Rate<span style={{ color: "#111" }}>Mate</span>
           </Link>
         )}
 
-        {/* Mobile Menu Toggle */}
+
         <button
           className="mobile-menu-btn"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -31,7 +48,7 @@ const Navbar = () => {
           ☰
         </button>
 
-        {/* Links */}
+
         <div className={`nav-links ${menuOpen ? "nav-links-open" : ""}`}>
           {isAuthenticated ? (
             <>

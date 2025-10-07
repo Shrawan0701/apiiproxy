@@ -1,4 +1,4 @@
-/* Reset and base styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -34,8 +34,7 @@ body {
   padding: 0 20px;
 }
 
-/* Navbar */
-/* Navbar */
+
 .navbar {
   background: #fff;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
@@ -112,7 +111,7 @@ body {
   background: #333;
 }
 
-/* Buttons */
+
 .btn {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -208,11 +207,11 @@ body {
 }
 
 .hero {
-  background: #ffffff; /* pure white background */
-  color: #111111; /* dark text */
+  background: #ffffff;
+  color: #111111;
   padding: 4rem 0;
   text-align: center;
-  border-bottom: 1px solid #eaeaea; /* subtle bottom border for separation */
+  border-bottom: 1px solid #eaeaea;
 }
 
 .hero-content {
@@ -222,28 +221,20 @@ body {
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   font-weight: 700;
   color: #111111;
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
   color: #333333;
   opacity: 0.9;
 }
 
-.hero-description {
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  color: #444444;
-  opacity: 0.8;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 
 .hero-actions {
   display: flex;
@@ -256,11 +247,12 @@ body {
 /* Features */
 .features {
   padding: 4rem 0;
+
 }
 
 .features h2 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 3rem;
   color: #1e293b;
 }
@@ -809,7 +801,7 @@ body {
   }
 }
 
-/* Desktop shows links normally */
+
 @media (min-width: 769px) {
   .mobile-menu-btn {
     display: none;

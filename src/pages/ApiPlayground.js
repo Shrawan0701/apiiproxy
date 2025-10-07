@@ -267,7 +267,7 @@ const ApiPlayground = () => {
 {`curl -X POST https://apiproxy-zeak.onrender.com/api/proxy \
   -H "X-API-Key: ${apiKey}" \
   -H "Content-Type: application/json" \
-  -d '{"url": "https://api.example.com", "method": "GET"}'`}
+  -d '{"url": "https://jsonplaceholder.typicode.com/posts/1", "method": "GET"}'`}
             </pre>
           </div>
         </div>

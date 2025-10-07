@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
 import { authService } from '../services/api';
@@ -15,6 +15,16 @@ const Register = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  // Auto-hide error after 5 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 5000);
+      return () => clearTimeout(timer); // Cleanup on unmount or error change
+    }
+  }, [error]);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -25,7 +35,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError(''); // Clear previous errors
 
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
@@ -103,8 +113,8 @@ const Register = () => {
               />
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary btn-full"
               disabled={loading}
             >
@@ -117,18 +127,6 @@ const Register = () => {
               Already have an account?{' '}
               <Link to="/login" className="auth-link">Sign In</Link>
             </p>
-          </div>
-
-          <div className="social-login">
-            <p>Or continue with</p>
-            <div className="social-buttons">
-              <button className="btn btn-social" disabled>
-                <span>🔗</span> Google (Coming Soon)
-              </button>
-              <button className="btn btn-social" disabled>
-                <span>📱</span> GitHub (Coming Soon)
-              </button>
-            </div>
           </div>
         </div>
       </div>

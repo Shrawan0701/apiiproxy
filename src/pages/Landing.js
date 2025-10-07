@@ -9,14 +9,12 @@ const Landing = () => {
     <div className="landing">
       <section className="hero">
         <div className="hero-content">
-          <h1>API Limiter & Monitoring Platform</h1>
+          <h1>Unlock API Power with Smart Limits</h1>
           <p className="hero-subtitle">
-            Rate limit, monitor, and analyze your API requests with ease
-          </p>
-          <p className="hero-description">
-            Get your API key, make requests through our proxy, and view detailed 
-            analytics with automatic rate limiting built in.
-          </p>
+             Generate your free key in seconds, proxy any request with zero hassle,
+             and unlock detailed dashboard.
+            </p>
+
 
           {isAuthenticated ? (
             <Link to="/dashboard" className="btn btn-primary btn-large">
